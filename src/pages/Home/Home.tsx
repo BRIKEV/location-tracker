@@ -1,12 +1,13 @@
-import style from './Home.module.scss';
+import { ROUTES } from '../../constants';
 import Card from '../../components/Card';
+import Main from '../../layouts/Main';
 
 const Home = () => (
-  <div className={style.container}>
-    <Card link="/init">
+  <Main>
+    <Card link={ROUTES.TRIP}>
       carrera
     </Card>
-  </div>
+  </Main>
 );
 
 export default Home;
