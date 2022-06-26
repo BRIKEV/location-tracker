@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 const morgan = require('morgan');
 const { join } = require('path');
 const helmet = require('helmet');
@@ -16,13 +17,19 @@ const startServer = async () => {
     dbInstance,
     models,
   });
+  // parse application/x-www-form-urlencoded
+  app.use(bodyParser.urlencoded({ extended: false }))
+  // parse application/json
+  app.use(bodyParser.json())
   app.use(helmet({
     contentSecurityPolicy: false,
   }));
   app.use(compression());
   app.use(morgan('tiny'));
   app.use(express.static('build'));
-  app.use('/api/v1', api());
+  app.use('/api/v1', api({
+    store,
+  }));
   app.get('/*', (req, res) => {
     res.sendFile(join(__dirname, 'dist', 'index.html'));
   });

@@ -1,6 +1,6 @@
 const start = async ({ models }) => {
   const registerTrip = async (trip) => {
-    const newTrip = new models.Location({
+    const newTrip = new models.Trip({
       completed: false,
       start: {
         lat: trip.lat,
@@ -12,7 +12,7 @@ const start = async ({ models }) => {
   };
 
   const endTrip = async (id, trip) => {
-    await models.Location.findOneAndUpdate({ id }, {
+    await models.Trip.findOneAndUpdate({ id }, {
       $set: {
         finish: {
           lat: trip.lat,

@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
-const Location = require('./models/Location');
+const Trip = require('./models/Trip');
 
 const start = async options => {
   try {
     await mongoose.connect(options.uri);
     return {
-      mongoose,
+      dbInstance: mongoose,
       models: {
-        Location,
+        Trip,
       },
     };
   } catch (error) {

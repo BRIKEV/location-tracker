@@ -1,6 +1,6 @@
 const logger = require('../utils/logger')
 
-const start = async ({ store }) => {
+const start = ({ store }) => {
   const registerTrip = async (trip) => {
     logger.info('Registering trip...');
     const newTrip = await store.registerTrip(trip);

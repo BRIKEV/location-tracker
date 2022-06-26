@@ -5,7 +5,7 @@ const createdOn = () => {
   return new Date();
 };
 
-const locationSchema = new mongoose.Schema({
+const tripSchema = new mongoose.Schema({
   id: {
     type: String,
     default: function genUUID() {
@@ -26,4 +26,6 @@ const locationSchema = new mongoose.Schema({
   completed: { type: Boolean, required: true },
 }, { timestamps: true });
 
-module.export = locationSchema;
+const Trip = mongoose.model('Trip', tripSchema);
+
+module.exports = Trip;
