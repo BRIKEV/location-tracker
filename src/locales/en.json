@@ -3,5 +3,12 @@
     "cancel": "cancel",
     "save": "save",
     "title": "Add price"
+  },
+  "home": {
+    "run": "New trip"
+  },
+  "trip": {
+    "cancel": "cancel",
+    "end": "End trip"
   }
 }

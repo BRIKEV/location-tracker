@@ -3,5 +3,12 @@
     "cancel": "cancelar",
     "save": "guardar",
     "title": "Añade el precio"
+  },
+  "home": {
+    "run": "Nueva Carrera"
+  },
+  "trip": {
+    "cancel": "Cancelar",
+    "end": "Finalizar"
   }
 }

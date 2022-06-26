@@ -11,11 +11,15 @@
   background: $Primary;
   color: $PText;
   display: flex;
+  font-size: 2rem;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   &:hover {
     background-color: darken($Primary, 5);
+  }
+  &.secondary {
+    background-color: $Secondary;
   }
 }
