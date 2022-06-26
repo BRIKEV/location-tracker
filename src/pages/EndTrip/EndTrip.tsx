@@ -5,12 +5,13 @@ import { ROUTES } from '../../constants';
 import Main from '../../layouts/Main';
 import PriceSelector from '../../components/PriceSelector';
 import Button from '../../components/Button';
+import { getCurrentPosition } from '../../lib/location';
 
 const EndTrip = () => {
   const { t } = useTranslation();
   const [value, setValue] = useState<number | null>(null);
-  const saveInfo = () => {
-    console.log(value);
+  const saveInfo = async () => {
+    await getCurrentPosition();
   };
 
   return (
