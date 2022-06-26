@@ -1,4 +1,10 @@
-const logger = require('../utils/logger')
+const {
+  CustomErrorTypes,
+  errorFactory,
+} = require('error-handler-module');
+const logger = require('../utils/logger');
+
+const notFoundError = errorFactory(CustomErrorTypes.NOT_FOUND);
 
 const start = ({ store }) => {
   const registerTrip = async (trip) => {
@@ -12,7 +18,7 @@ const start = ({ store }) => {
     logger.info('Endind trip...');
     const updatedTrip = await store.endTrip(id, trip);
     if (!updatedTrip) {
-      throw new Error('Not found');
+      throw notFoundError('Trip Not found');
     }
     logger.info('Trip ended...');
   };

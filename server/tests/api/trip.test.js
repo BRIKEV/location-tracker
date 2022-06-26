@@ -6,7 +6,7 @@ describe('Trip endpoints', () => {
   let request;
   let dbClient;
   beforeAll(async () => {
-    const { app, models, dbInstance } = await startServer ();
+    const { app, models, dbInstance } = await startServer();
     request = supertest(app);
     mongoModels = models;
     dbClient = dbInstance;
@@ -67,6 +67,19 @@ describe('Trip endpoints', () => {
         expect(newTrip).toHaveProperty(['finish', 'lat'], 80);
         expect(newTrip).toHaveProperty(['finish', 'long'], 62);
         expect(newTrip).toHaveProperty(['finish', 'price'], 200);
+      })
+  ));
+
+  it('"/api/v1/trips/:id/end" should return not found when id does not exists', () => (
+    request.post('/api/v1/trips/not-found-id/end')
+      .send({
+        lat: 80,
+        long: 62,
+        price: 200
+      })
+      .expect(404)
+      .then(({ body }) => {
+        expect(body).toEqual({ message: 'Trip Not found' });
       })
   ));
 });

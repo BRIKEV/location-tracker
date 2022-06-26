@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const { join } = require('path');
 const helmet = require('helmet');
 const compression = require('compression');
+const { handleHttpError } = require('error-handler-module');
+const logger = require('./utils/logger');
 const storeInstance = require('./store');
 const mongodb = require('./mongodb');
 const config = require('./config');
@@ -25,7 +27,7 @@ const startServer = async () => {
     contentSecurityPolicy: false,
   }));
   app.use(compression());
-  app.use(morgan('tiny'));
+  app.use(morgan('tiny', { skip: (req, res) => process.env.NODE_ENV === 'test' }));
   app.use(express.static('build'));
   app.use('/api/v1', api({
     store,
@@ -33,6 +35,8 @@ const startServer = async () => {
   app.get('/*', (req, res) => {
     res.sendFile(join(__dirname, 'dist', 'index.html'));
   });
+
+  app.use(handleHttpError(logger));
 
   return { app, store, models, dbInstance };
 };
