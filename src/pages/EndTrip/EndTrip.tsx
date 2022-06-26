@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ROUTES } from '../../constants';
 import Main from '../../layouts/Main';
 import PriceSelector from '../../components/PriceSelector';
-import style from './EndTrip.module.scss';
+import Button from '../../components/Button';
 
 const EndTrip = () => {
   const [value, setValue] = useState<number | null>(null);
@@ -16,19 +16,18 @@ const EndTrip = () => {
     <h1>Añade el precio</h1>
     <PriceSelector onChange={setValue} />
     <div>
-      <button
-        className={`${style.btn} ${style.primary}`}
+      <Button
         disabled={value === null}
         onClick={() => saveInfo()}
       >
         Guardar
-      </button>
+      </Button>
       <Link to={ROUTES.HOME}>
-        <button
-          className={`${style.btn} ${style.light}`}
+        <Button
+          type='light'
         >
           cancelar
-        </button>
+        </Button>
       </Link>
     </div>
   </Main>

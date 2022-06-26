@@ -1,13 +1,6 @@
 @use 'sass:math';
 @import '../../styles/variables';
 
-// Em Font size
-$em-base: 16px !default;
-// Working in ems is annoying. Think in pixels by using this handy function, emCalc(#px) Borrowed from Zurb's Foundation 4
-@function emCalc($pxWidth) {
-  @return math.div($pxWidth, $em-base) * 1em;
-}
-
 .btn {
   border: 0 none;
   border-radius: 6px;
@@ -50,6 +43,10 @@ $button-list: primary $Primary, secondary $Secondary, light $PText;
           background: darken($color, 9);
         }
       }
+    }
+    &:disabled,
+    &[disabled] {
+      background-color: $SDark;
     }
   }
 }
