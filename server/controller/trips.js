@@ -10,7 +10,10 @@ const start = ({ store }) => {
 
   const endTrip = async (id, trip) => {
     logger.info('Endind trip...');
-    await store.endTrip(id, trip);
+    const updatedTrip = await store.endTrip(id, trip);
+    if (!updatedTrip) {
+      throw new Error('Not found');
+    }
     logger.info('Trip ended...');
   };
 

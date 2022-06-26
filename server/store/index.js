@@ -12,15 +12,17 @@ const start = async ({ models }) => {
   };
 
   const endTrip = async (id, trip) => {
-    await models.Trip.findOneAndUpdate({ id }, {
+    const updatedTrip = await models.Trip.findOneAndUpdate({ id }, {
       $set: {
         finish: {
           lat: trip.lat,
-          long: trip.lat,
+          long: trip.long,
           price: trip.price,
         },
+        completed: true,
       },
     });
+    return updatedTrip;
   };
 
   return { registerTrip, endTrip };
