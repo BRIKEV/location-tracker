@@ -2,7 +2,7 @@ import { ROUTES } from '../../constants';
 import Card from '../../components/Card';
 import Main from '../../layouts/Main';
 
-const Home = () => (
+const Trip = () => (
   <Main>
     <Card link={ROUTES.END_TRIP}>
       Finalizar
@@ -14,4 +14,4 @@ const Home = () => (
   </Main>
 );
 
-export default Home;
+export default Trip;

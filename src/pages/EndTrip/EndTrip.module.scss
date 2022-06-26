@@ -1,0 +1,55 @@
+@use 'sass:math';
+@import '../../styles/variables';
+
+// Em Font size
+$em-base: 16px !default;
+// Working in ems is annoying. Think in pixels by using this handy function, emCalc(#px) Borrowed from Zurb's Foundation 4
+@function emCalc($pxWidth) {
+  @return math.div($pxWidth, $em-base) * 1em;
+}
+
+.btn {
+  border: 0 none;
+  border-radius: 6px;
+  color: $PText;
+  cursor: pointer;
+  font-size: emCalc(18px);
+  margin: 0  emCalc(10px);
+  outline: 0 none;
+  text-decoration: none;
+  line-height: inherit;
+  padding: emCalc(14px) emCalc(18px);
+  margin-bottom: emCalc(10px);
+  &:hover {
+    color: $PText;
+  }
+}
+// The button Constructor
+$button-list: primary $Primary, secondary $Secondary, light $PText;
+@each $button in $button-list {
+  .btn {
+    $style: nth($button, 1);
+    $color: nth($button, 2);
+    @extend .btn;
+    &.#{$style} {
+      background: $color;
+      &:hover {
+        background: lighten($color, 10);
+      }
+      &.small {
+        padding: emCalc(12px) emCalc(10px);
+        font-size: emCalc(14px);
+      }
+      &.tiny {
+        padding: emCalc(6px) emCalc(8px);
+        font-size: emCalc(12px);
+      }
+      @if $style == 'light' {
+        color: $DarkText;
+        &:hover {
+          background: darken($color, 9);
+        }
+      }
+    }
+  }
+}
