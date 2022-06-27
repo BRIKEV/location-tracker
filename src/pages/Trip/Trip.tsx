@@ -7,7 +7,7 @@ const Trip = () => {
   const { t } = useTranslation();
   return (
     <Main>
-      <Card link={ROUTES.END_TRIP}>
+      <Card link={ROUTES.END_TRIP.replace(':id', 'randomid')}>
         {t('trip.end', 'Finalizar')}
       </Card>
       <hr />

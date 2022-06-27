@@ -7,7 +7,7 @@ const Home = () => {
   const { t } = useTranslation();
   return (
     <Main>
-      <Card link={ROUTES.TRIP}>
+      <Card link={ROUTES.TRIP.replace(':id', 'randomid')}>
         {t('home.run', 'Carrera')}
       </Card>
     </Main>

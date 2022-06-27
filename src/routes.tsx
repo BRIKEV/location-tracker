@@ -11,8 +11,8 @@ import EndTrip from './pages/EndTrip';
 const AppRoutes = () => (
   <Router>
     <Routes>
-      <Route path={ROUTES.TRIP} element={<Trip />} />
       <Route path={ROUTES.END_TRIP} element={<EndTrip />} />
+      <Route path={ROUTES.TRIP} element={<Trip />} />
       <Route path={ROUTES.HOME} element={<Home />} />
     </Routes>
   </Router>

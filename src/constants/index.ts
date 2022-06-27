@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/prefer-default-export
 export const ROUTES = {
   HOME: '/',
-  TRIP: '/trip',
-  END_TRIP: '/end-trip',
+  TRIP: '/trips/:id',
+  END_TRIP: '/trips/:id/end',
 };
