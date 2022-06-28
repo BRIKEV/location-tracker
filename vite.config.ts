@@ -6,6 +6,11 @@ import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      '/api': 'http://localhost:4000',
+    },
+  },
   plugins: [
     i18nResources({
       path: resolve(__dirname, 'src/locales'),

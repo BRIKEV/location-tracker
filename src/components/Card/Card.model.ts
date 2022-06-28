@@ -1,5 +1,7 @@
+import { MouseEventHandler } from 'react';
+
 export interface CardProps {
   children: React.ReactNode
-  link: string
+  onClick: MouseEventHandler<HTMLDivElement>
   type?: 'secondary'
 }

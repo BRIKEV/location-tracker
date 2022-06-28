@@ -18,6 +18,7 @@ const start = async ({ models }) => {
           lat: trip.lat,
           long: trip.long,
           price: trip.price,
+          created: new Date(),
         },
         completed: true,
       },

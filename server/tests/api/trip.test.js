@@ -36,6 +36,7 @@ describe('Trip endpoints', () => {
         expect(newTrip).toHaveProperty(['start', 'lat'], 12);
         expect(newTrip).toHaveProperty(['start', 'long'], 40);
         expect(newTrip).toHaveProperty('completed', false);
+        expect(newTrip).toHaveProperty(['start', 'created']);
       })
   ));
 
@@ -56,17 +57,19 @@ describe('Trip endpoints', () => {
           })
           .expect(204);
       })
-      .then(async ({ body }) => {
+      .then(async () => {
         const trips = await mongoModels.Trip.find();
         expect(trips).toHaveLength(1);
         const [newTrip] = trips;
         expect(newTrip).toHaveProperty('id', 'start', 'finish', 'completed', 'createdAt', 'updatedAt');
         expect(newTrip).toHaveProperty(['start', 'lat'], 12);
         expect(newTrip).toHaveProperty(['start', 'long'], 40);
+        expect(newTrip).toHaveProperty(['start', 'created']);
         expect(newTrip).toHaveProperty('completed', true);
         expect(newTrip).toHaveProperty(['finish', 'lat'], 80);
         expect(newTrip).toHaveProperty(['finish', 'long'], 62);
         expect(newTrip).toHaveProperty(['finish', 'price'], 200);
+        expect(newTrip).toHaveProperty(['finish', 'created']);
       })
   ));
 

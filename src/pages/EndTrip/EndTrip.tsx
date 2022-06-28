@@ -1,17 +1,27 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { ROUTES } from '../../constants';
 import Main from '../../layouts/Main';
 import PriceSelector from '../../components/PriceSelector';
 import Button from '../../components/Button';
+import * as api from '../../repository/api';
 import { getCurrentPosition } from '../../lib/location';
 
 const EndTrip = () => {
   const { t } = useTranslation();
   const [value, setValue] = useState<number | null>(null);
+  const { id } = useParams();
+  const navigate = useNavigate();
   const saveInfo = async () => {
-    await getCurrentPosition();
+    if (id && value) {
+      const position = await getCurrentPosition();
+      await api.endTrip(id, {
+        ...position,
+        price: value,
+      });
+      navigate(ROUTES.HOME);
+    }
   };
 
   return (
