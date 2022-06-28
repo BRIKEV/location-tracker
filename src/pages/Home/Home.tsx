@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <Main>
-      <Card onClick={newTrip}>
+      <Card dataCy="new-trip-button" onClick={newTrip}>
         {t('home.run', 'Carrera')}
       </Card>
     </Main>

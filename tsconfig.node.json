@@ -2,7 +2,8 @@
   "compilerOptions": {
     "composite": true,
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "types": ["cypress"]
   },
   "exclude": ["server/*"],
   "include": ["vite.config.ts"]
