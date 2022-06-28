@@ -11,7 +11,15 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add('completePrice', (value: number) => {
+  const columns = value.toString().split('').map(value => +value);
+  columns.forEach((value, index) => {
+    cy.get(`[data-cy=price-selector] ul:nth-child(${index + 1}) li:nth-child(${value + 1})`).click();
+    cy.get(`[data-cy=price-selector] ul:nth-child(${index + 1}) li:nth-child(${value + 1})`).click();
+    cy.get(`[data-cy=price-selector] ul:nth-child(${index + 1}) li:nth-child(${value + 1})`).click();
+    cy.get(`[data-cy=price-selector] ul:nth-child(${index + 1}) li:nth-child(${value + 1})`).click();
+  })
+})
 //
 //
 // -- This is a child command --
@@ -24,14 +32,3 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }

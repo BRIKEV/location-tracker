@@ -18,7 +18,7 @@ const PriceSelector = ({ defaultValue = priceDefault, onChange }: PriceSelectorP
 
   return (
     <>
-      <div className={style.listContainer}>
+      <div data-cy="price-selector" className={style.listContainer}>
         {numberList.map((list, listKey) => (
           <ul key={listKey}>
             {list.map((number, numberKey) => (

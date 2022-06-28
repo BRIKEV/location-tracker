@@ -30,6 +30,7 @@ const EndTrip = () => {
       <PriceSelector onChange={setValue} />
       <div>
         <Button
+          data-cy="save-info-button"
           disabled={value === null}
           onClick={() => saveInfo()}
         >
@@ -37,6 +38,7 @@ const EndTrip = () => {
         </Button>
         <Link to={ROUTES.HOME}>
           <Button
+            data-cy="cancel-trip-button"
             type='light'
           >
             {t('endTrip.cancel', 'cancelar')}

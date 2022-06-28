@@ -10,11 +10,11 @@ const Trip = () => {
   const { id } = useParams();
   return (
     <Main>
-      <Card onClick={() => navigate(ROUTES.END_TRIP.replace(':id', id as string))}>
+      <Card dataCy="end-trip-button" onClick={() => navigate(ROUTES.END_TRIP.replace(':id', id as string))}>
         {t('trip.end', 'Finalizar')}
       </Card>
       <hr />
-      <Card type='secondary' onClick={() => navigate(ROUTES.HOME)}>
+      <Card dataCy="cancel-trip-button" type="secondary" onClick={() => navigate(ROUTES.HOME)}>
         {t('trip.cancel', 'cancelar')}
       </Card>
     </Main>
