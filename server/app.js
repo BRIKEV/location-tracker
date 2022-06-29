@@ -28,12 +28,12 @@ const startServer = async () => {
   }));
   app.use(compression());
   app.use(morgan('tiny', { skip: (req, res) => process.env.NODE_ENV === 'test' }));
-  app.use(express.static('build'));
+  app.use(express.static(join(__dirname, '..', 'dist')));
   app.use('/api/v1', api({
     store,
   }));
   app.get('/*', (req, res) => {
-    res.sendFile(join(__dirname, 'dist', 'index.html'));
+    res.sendFile(join(__dirname, '..', 'dist', 'index.html'));
   });
 
   app.use(handleHttpError(logger));
