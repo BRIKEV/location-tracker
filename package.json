@@ -11,6 +11,7 @@
     "docker": "docker-compose --file docker/development/docker-compose.yml up -d --force-recreate",
     "start": "cross-env NODE_ENV=production node server.js",
     "lint:fix": "npm run lint -- --fix",
+    "heroku-postbuild": "npm run build",
     "preview": "vite preview"
   },
   "dependencies": {
