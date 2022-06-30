@@ -25,9 +25,11 @@ const EndTrip = () => {
   };
 
   return (
-    <Main>
+    <Main layout='top'>
       <h1>{t('endTrip.title', 'Añade el precio')}</h1>
-      <PriceSelector onChange={setValue} />
+      <PriceSelector
+        onChange={setValue}
+      />
       <div>
         <Button
           data-cy="save-info-button"

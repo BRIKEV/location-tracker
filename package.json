@@ -3,8 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "cypress:open": "cypress open",
-    "dev": "vite",
+    "cypress:open": "wait-on tcp:3000 && cypress open",
+    "test:dev": "run-p dev cypress:open",
+    "dev": "vite --host 0.0.0.0",
     "build": "tsc && cross-env BUILD=enabled vite build",
     "lint": "npx eslint src",
     "test": "cross-env NODE_ENV=test jest",
@@ -50,12 +51,14 @@
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "jest": "^28.1.1",
+    "npm-run-all": "^4.1.5",
     "sass": "^1.53.0",
     "supertest": "^6.2.3",
     "typescript": "^4.6.3",
     "vite": "^2.9.9",
     "vite-plugin-favicon": "^1.0.8",
     "vite-plugin-i18n-resources": "^1.0.3",
-    "vite-plugin-i18next-scanner": "^0.4.0"
+    "vite-plugin-i18next-scanner": "^0.4.0",
+    "wait-on": "^6.0.1"
   }
 }

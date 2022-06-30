@@ -17,7 +17,16 @@ const PriceSelector = ({ defaultValue = priceDefault, onChange }: PriceSelectorP
   };
 
   return (
-    <>
+    <div className={style.container}>
+      <div className={style.amount}>
+        {values.slice(0, 2).map((value, index) => (
+          <span key={`${value}-${index}`}>{value}</span>
+        ))}
+        <span>,</span>
+        {values.slice(2, 4).map((value, index) => (
+          <span key={`${value}-${index}`}>{value}</span>
+        ))} €
+      </div>
       <div data-cy="price-selector" className={style.listContainer}>
         {numberList.map((list, listKey) => (
           <ul key={listKey}>
@@ -29,17 +38,7 @@ const PriceSelector = ({ defaultValue = priceDefault, onChange }: PriceSelectorP
           </ul>
         ))}
       </div>
-      <div className={style.amount}>
-        <h2>Cantidad</h2>
-        {values.slice(0, 2).map((value, index) => (
-          <span key={`${value}-${index}`}>{value}</span>
-        ))}
-        <span>,</span>
-        {values.slice(2, 4).map((value, index) => (
-          <span key={`${value}-${index}`}>{value}</span>
-        ))}
-      </div>
-    </>
+    </div>
   );
 };
 
