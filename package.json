@@ -5,7 +5,7 @@
   "scripts": {
     "cypress:open": "cypress open",
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && cross-env BUILD=enabled vite build",
     "lint": "npx eslint src",
     "test": "cross-env NODE_ENV=test jest",
     "docker": "docker-compose --file docker/development/docker-compose.yml up -d --force-recreate",
@@ -54,6 +54,7 @@
     "supertest": "^6.2.3",
     "typescript": "^4.6.3",
     "vite": "^2.9.9",
+    "vite-plugin-favicon": "^1.0.8",
     "vite-plugin-i18n-resources": "^1.0.3",
     "vite-plugin-i18next-scanner": "^0.4.0"
   }
