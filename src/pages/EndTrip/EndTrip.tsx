@@ -7,6 +7,7 @@ import PriceSelector from '../../components/PriceSelector';
 import Button from '../../components/Button';
 import * as api from '../../repository/api';
 import { getCurrentPosition } from '../../lib/location';
+import style from './EndTrip.module.scss';
 
 const EndTrip = () => {
   const { t } = useTranslation();
@@ -26,11 +27,13 @@ const EndTrip = () => {
 
   return (
     <Main layout='top'>
-      <h1>{t('endTrip.title', 'Añade el precio')}</h1>
+      <header className={style.header}>
+        <h1 className={style.title}>{t('endTrip.title', 'Añade el precio')}</h1>
+      </header>
       <PriceSelector
         onChange={setValue}
       />
-      <div>
+      <div className={style.buttons}>
         <Button
           data-cy="save-info-button"
           disabled={value === null}

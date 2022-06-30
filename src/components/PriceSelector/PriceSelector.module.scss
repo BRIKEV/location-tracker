@@ -2,13 +2,11 @@ $NumberFont: 1.8rem;
 
 .container {
   width: 100%;
-  margin-bottom: 20px;
+  padding-bottom: 90px;
   .listContainer {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-height: 550px;
-    overflow: auto;
     ul {
       list-style: none;
       padding: 0;
