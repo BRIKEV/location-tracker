@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
 .header {
-  margin: 40px 0 20px 0;
+  margin-bottom: 20px;
   .title {
     font-size: 1.5rem;
     font-weight: 700;
@@ -9,7 +9,7 @@
 }
 
 .buttons {
-  background-color: $Background;
+  background-color: darken($Background, 20);
   width: 100%;
   position: fixed;
   bottom: 0;

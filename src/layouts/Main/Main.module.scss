@@ -4,9 +4,9 @@
   background-color: $Background;
   display: flex;
   align-items: center;
-  height: 100vh;
+  height: auto;
   width: 90%;
-  margin: 0 auto;
+  margin: 40px auto;
   max-width: 400px;
   flex-direction: column;
   &.center {

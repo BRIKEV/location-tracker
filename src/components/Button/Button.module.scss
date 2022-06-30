@@ -39,6 +39,7 @@ $button-list: primary $Primary, secondary $Secondary, light $PText;
       }
       @if $style == 'light' {
         color: $DarkText;
+        background-color: $SText;
         &:hover {
           background: darken($color, 9);
         }

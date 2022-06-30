@@ -26,7 +26,7 @@ const EndTrip = () => {
   };
 
   return (
-    <Main layout='top'>
+    <Main>
       <header className={style.header}>
         <h1 className={style.title}>{t('endTrip.title', 'Añade el precio')}</h1>
       </header>

@@ -6,7 +6,7 @@ interface MainLayoutProps {
 }
 
 const Main = ({ children, layout }: MainLayoutProps) => (
-  <div className={`${style.container} ${style[layout || 'center']}`}>
+  <div className={`${style.container} ${style[layout || 'top']}`}>
     {children}
   </div>
 );
