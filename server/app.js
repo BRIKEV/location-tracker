@@ -1,5 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const expressJSDocSwagger = require('express-jsdoc-swagger');
 const morgan = require('morgan');
 const { join } = require('path');
 const helmet = require('helmet');
@@ -29,6 +30,7 @@ const startServer = async () => {
   app.use(compression());
   app.use(morgan('tiny', { skip: (req, res) => process.env.NODE_ENV === 'test' }));
   app.use(express.static(join(__dirname, '..', 'dist')));
+  expressJSDocSwagger(app)(config.swagger);
   app.use('/api/v1', api({
     store,
   }));
