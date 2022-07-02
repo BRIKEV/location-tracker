@@ -9,4 +9,7 @@ serverApp()
     app.listen(PORT, () =>
       logger.info(`Listening PORT: ${PORT}`)
     ))
-  .catch(err => console.error(err));
+  .catch((err) => {
+    logger.error(err);
+    process.exit(1);
+  });

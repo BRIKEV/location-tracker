@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const expressJSDocSwagger = require('express-jsdoc-swagger');
+const { init } = require('express-oas-validator');
 const morgan = require('morgan');
 const { join } = require('path');
 const helmet = require('helmet');
@@ -14,7 +15,7 @@ const api = require('./routes/api');
 
 const app = express();
 
-const startServer = async () => {
+const startServer = () => new Promise(async (resolve) => {
   const { dbInstance, models } = await mongodb(config.mongo);
   const store = await storeInstance({
     dbInstance,
@@ -28,19 +29,25 @@ const startServer = async () => {
     contentSecurityPolicy: false,
   }));
   app.use(compression());
-  app.use(morgan('tiny', { skip: (req, res) => process.env.NODE_ENV === 'test' }));
+  app.use(morgan('tiny', { skip: () => process.env.NODE_ENV === 'test' }));
   app.use(express.static(join(__dirname, '..', 'dist')));
-  expressJSDocSwagger(app)(config.swagger);
-  app.use('/api/v1', api({
-    store,
-  }));
-  app.get('/*', (req, res) => {
-    res.sendFile(join(__dirname, '..', 'dist', 'index.html'));
+  const instance = expressJSDocSwagger(app)(config.swagger);
+  
+  instance.on('finish', swaggerDef => {
+    const { validateRequest, validateResponse } = init(swaggerDef);
+    app.use('/api/v1', api({
+      store,
+      validators: {
+        validateRequest, validateResponse,
+      },
+    }));
+    app.get('/*', (_req, res) => {
+      res.sendFile(join(__dirname, '..', 'dist', 'index.html'));
+    });
+    app.use(handleHttpError(logger));
+    resolve({ app, store, models, dbInstance });
   });
 
-  app.use(handleHttpError(logger));
-
-  return { app, store, models, dbInstance };
-};
+});
 
 module.exports = startServer;
