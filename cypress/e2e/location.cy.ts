@@ -45,8 +45,9 @@ describe('Location tracker app', () => {
     cy.wait('@newTripRequest');
     cy.url().should('include', 'fake-id');
     cy.get('[data-cy=end-trip-button]').click();
-    // 1203
-    cy.completePrice(1203);
+    // 1205
+    cy.completePrice(1205);
+    cy.get('[data-cy=price-label]').should('contain.text', '12,05');
     cy.get('[data-cy=save-info-button]').click();
     cy.wait('@endTripRequest')
       .then(xhr => {
@@ -54,7 +55,7 @@ describe('Location tracker app', () => {
         expect(request.body).to.eql({
           lat: fakeLat,
           long: fakeLong,
-          price: 1203
+          price: 1205
         });
       });
     cy.get('[data-cy=new-trip-button]').should('be.visible');

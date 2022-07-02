@@ -14,10 +14,13 @@
 Cypress.Commands.add('completePrice', (value: number) => {
   const columns = value.toString().split('').map(value => +value);
   columns.forEach((value, index) => {
-    cy.get(`[data-cy=price-selector] ul:nth-child(${index + 1}) li:nth-child(${value + 1})`).click();
-    cy.get(`[data-cy=price-selector] ul:nth-child(${index + 1}) li:nth-child(${value + 1})`).click();
-    cy.get(`[data-cy=price-selector] ul:nth-child(${index + 1}) li:nth-child(${value + 1})`).click();
-    cy.get(`[data-cy=price-selector] ul:nth-child(${index + 1}) li:nth-child(${value + 1})`).click();
+    // The last column only has two selectors: 0 and 5. That logic is done in the first if statement
+    if (index === 3) {
+      const selectValue = value === 5 ? 2 : 1;
+      cy.get(`[data-cy=price-selector] ul:nth-child(${index + 1}) li:nth-child(${selectValue})`).click();
+    } else {
+      cy.get(`[data-cy=price-selector] ul:nth-child(${index + 1}) li:nth-child(${value + 1})`).click();
+    }
   })
 })
 //

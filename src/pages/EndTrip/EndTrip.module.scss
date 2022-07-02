@@ -2,6 +2,15 @@
 
 .header {
   margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid;
+  padding-bottom: 20px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: $Background;
   .title {
     font-size: 1.5rem;
     font-weight: 700;

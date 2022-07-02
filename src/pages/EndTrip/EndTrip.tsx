@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ROUTES } from '../../constants';
 import Main from '../../layouts/Main';
 import PriceSelector from '../../components/PriceSelector';
+import PriceLabel from '../../components/PriceLabel';
 import Button from '../../components/Button';
 import * as api from '../../repository/api';
 import { getCurrentPosition } from '../../lib/location';
@@ -11,7 +12,7 @@ import style from './EndTrip.module.scss';
 
 const EndTrip = () => {
   const { t } = useTranslation();
-  const [value, setValue] = useState<number | null>(null);
+  const [value, setValue] = useState<string | null>(null);
   const { id } = useParams();
   const navigate = useNavigate();
   const saveInfo = async () => {
@@ -19,7 +20,7 @@ const EndTrip = () => {
       const position = await getCurrentPosition();
       await api.endTrip(id, {
         ...position,
-        price: value,
+        price: +value,
       });
       navigate(ROUTES.HOME);
     }
@@ -29,6 +30,7 @@ const EndTrip = () => {
     <Main>
       <header className={style.header}>
         <h1 className={style.title}>{t('endTrip.title', 'Añade el precio')}</h1>
+        <PriceLabel values={value?.split('')} />
       </header>
       <PriceSelector
         onChange={setValue}
